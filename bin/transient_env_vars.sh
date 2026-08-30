@@ -22,7 +22,8 @@ case $1 in
 
     for KEY in $OVARS; do
       VALUE=${!KEY}
-      sed -i "s/$KEY/$VALUE/" "$DST"/**/*.js
+      ESCAPED_VALUE=$(printf '%s' "$VALUE" | sed -e 's/[\/&\\]/\\&/g')
+      sed -i "s/$KEY/$ESCAPED_VALUE/" "$DST"/**/*.js
     done
     ;;
 
