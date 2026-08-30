@@ -2,11 +2,10 @@
 
 shopt -s globstar
 
-RVARS=$(cut -d = -f 1 .env.sample)
-
 case $1 in
 
   "bait")
+    RVARS=$(cut -d = -f 1 .env.sample)
     for KEY in $RVARS; do
       echo "$KEY=${KEY//REACT_APP_/ORGANICE_}"
     done
@@ -19,7 +18,7 @@ case $1 in
     rm -rf "$DST"
     cp -r "$SRC" "$DST"
 
-    OVARS=${RVARS//REACT_APP_/ORGANICE_}
+    OVARS=$(cut -d = -f 2 .env)
 
     for KEY in $OVARS; do
       VALUE=${!KEY}
