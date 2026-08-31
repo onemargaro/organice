@@ -12,6 +12,7 @@ import {
   subMonths,
   subYears,
   isBefore,
+  isAfter,
   differenceInMinutes,
   getHours,
   setHours,
@@ -145,6 +146,22 @@ export const subtractTimestampUnitFromDate = (date, numUnits, timestampUnit) => 
   }
 };
 
+const setTimestampDate = (timestamp, newDate) => {
+  timestamp = timestamp
+    .set('day', format(newDate, 'dd'))
+    .set('dayName', format(newDate, 'eee'))
+    .set('month', format(newDate, 'MM'))
+    .set('year', format(newDate, 'yyyy'));
+
+  if (timestamp.get('startHour') !== undefined && timestamp.get('startHour') !== null) {
+    timestamp = timestamp
+      .set('startHour', format(newDate, 'HH'))
+      .set('startMinute', format(newDate, 'mm'));
+  }
+
+  return timestamp;
+};
+
 export const applyRepeater = (timestamp, currentDate) => {
   if (!timestamp.get('repeaterType')) {
     return timestamp;
@@ -190,19 +207,41 @@ export const applyRepeater = (timestamp, currentDate) => {
       return timestamp;
   }
 
-  timestamp = timestamp
-    .set('day', format(newDate, 'dd'))
-    .set('dayName', format(newDate, 'eee'))
-    .set('month', format(newDate, 'MM'))
-    .set('year', format(newDate, 'yyyy'));
+  return setTimestampDate(timestamp, newDate);
+};
 
-  if (timestamp.get('startHour') !== undefined && timestamp.get('startHour') !== null) {
-    timestamp = timestamp
-      .set('startHour', format(newDate, 'HH'))
-      .set('startMinute', format(newDate, 'mm'));
+/** Projects a repeating timestamp forward onto every occurrence that falls within
+[rangeStart, rangeEnd], for Agenda display. All repeater types (+, ++, .+) are
+treated as simple fixed-period recurrence here — their behavioral difference only
+matters for how the stored timestamp advances when an item is marked DONE. */
+export const getRepeaterOccurrenceTimestamps = (timestamp, rangeStart, rangeEnd) => {
+  if (!timestamp.get('repeaterType')) {
+    return [];
   }
 
-  return timestamp;
+  const repeaterValue = parseInt(timestamp.get('repeaterValue'), 10);
+  const repeaterUnit = timestamp.get('repeaterUnit');
+  if (!repeaterValue || !repeaterUnit) {
+    return [];
+  }
+
+  const occurrences = [];
+  let occurrenceDate = dateForTimestamp(timestamp);
+  let iterations = 0;
+  const maxIterations = 10000;
+
+  while (isBefore(occurrenceDate, rangeStart) && iterations < maxIterations) {
+    occurrenceDate = addTimestampUnitToDate(occurrenceDate, repeaterValue, repeaterUnit);
+    iterations++;
+  }
+
+  while (!isAfter(occurrenceDate, rangeEnd) && iterations < maxIterations) {
+    occurrences.push(setTimestampDate(timestamp, occurrenceDate));
+    occurrenceDate = addTimestampUnitToDate(occurrenceDate, repeaterValue, repeaterUnit);
+    iterations++;
+  }
+
+  return occurrences;
 };
 
 export const timestampDuration = (startTimestamp, endTimestamp) => {

@@ -16,6 +16,7 @@ import {
   dateForTimestamp,
   subtractTimestampUnitFromDate,
   addTimestampUnitToDate,
+  getRepeaterOccurrenceTimestamps,
 } from '../../../../../../lib/timestamps';
 
 import {
@@ -83,7 +84,10 @@ export default class AgendaDay extends PureComponent {
               });
 
               return (
-                <div key={planningItem.get('id')} className="agenda-day__header-container">
+                <div
+                  key={`${planningItem.get('id')}-${format(planningItemDate, 'x')}`}
+                  className="agenda-day__header-container"
+                >
                   <div className="agenda-day__header__planning-item-container">
                     <div className="agenda-day__header-planning-type">
                       {getPlanningItemTypeText(planningItem)}
@@ -151,34 +155,44 @@ export default class AgendaDay extends PureComponent {
 
     return headers
       .flatMap((header) => {
-        const planningItemsforDate = header.get('planningItems').filter((planningItem) => {
+        // Check if this is a habit using the utility function
+        const headerIsHabit = isHabit(header);
+        const todoKeyword = header.getIn(['titleLine', 'todoKeyword']);
+        const isCompletedTodo =
+          todoKeyword &&
+          isTodoKeywordCompleted(todoKeywordSets.get(header.get('path')), todoKeyword);
+
+        return header.get('planningItems').flatMap((planningItem) => {
           const timestamp = planningItem.get('timestamp');
           if (!timestamp.get('isActive')) {
-            return false;
+            return [];
           }
-
-          // Check if this is a habit using the utility function
-          const headerIsHabit = isHabit(header);
 
           // When org-habit-show-all-today is enabled and viewing today:
           // Show ALL habits (even if not scheduled or completed)
           if (orgHabitShowAllToday && headerIsHabit && isToday(date)) {
-            return true;
+            return [[planningItem, header]];
+          }
+
+          if (isCompletedTodo) {
+            return [];
           }
 
           const planningItemDate = dateForTimestamp(timestamp);
-          const todoKeyword = header.getIn(['titleLine', 'todoKeyword']);
-          const isCompletedTodo =
-            todoKeyword &&
-            isTodoKeywordCompleted(todoKeywordSets.get(header.get('path')), todoKeyword);
-          if (isCompletedTodo) {
-            return false;
-          }
+
+          // Falls back to projecting the repeater onto this day's [dateStart, dateEnd]
+          // window when the literal stored date doesn't land here (e.g. a task
+          // scheduled weeks ago with a `+1w` repeater, viewed in Week/Month view).
+          const repeaterOccurrences = () =>
+            getRepeaterOccurrenceTimestamps(timestamp, dateStart, dateEnd).map(
+              (occurrenceTimestamp) => [planningItem.set('timestamp', occurrenceTimestamp), header]
+            );
+
           switch (planningItem.get('type')) {
             case 'DEADLINE':
               if (isToday(date)) {
                 if (isBefore(planningItemDate, new Date())) {
-                  return true;
+                  return [[planningItem, header]];
                 }
                 const [delayValue, delayUnit] = timestamp.get('delayType')
                   ? [timestamp.get('delayValue'), timestamp.get('delayUnit')]
@@ -188,9 +202,14 @@ export default class AgendaDay extends PureComponent {
                   delayValue,
                   delayUnit
                 );
-                return isAfter(date, appearDate) || isEqual(date, appearDate);
+                return isAfter(date, appearDate) || isEqual(date, appearDate)
+                  ? [[planningItem, header]]
+                  : [];
               } else {
-                return isWithinInterval(planningItemDate, { start: dateStart, end: dateEnd });
+                if (isWithinInterval(planningItemDate, { start: dateStart, end: dateEnd })) {
+                  return [[planningItem, header]];
+                }
+                return repeaterOccurrences();
               }
             case 'SCHEDULED':
               let appearDate = planningItemDate;
@@ -207,14 +226,18 @@ export default class AgendaDay extends PureComponent {
                 }
               }
               if (isToday(date) && isAfter(date, appearDate)) {
-                return true;
+                return [[planningItem, header]];
               }
-              return isWithinInterval(appearDate, { start: dateStart, end: dateEnd });
+              if (isWithinInterval(appearDate, { start: dateStart, end: dateEnd })) {
+                return [[planningItem, header]];
+              }
+              return repeaterOccurrences();
             default:
-              return isWithinInterval(planningItemDate, { start: dateStart, end: dateEnd });
+              return isWithinInterval(planningItemDate, { start: dateStart, end: dateEnd })
+                ? [[planningItem, header]]
+                : [];
           }
         });
-        return planningItemsforDate.map((planningItem) => [planningItem, header]);
       })
       .sortBy(([planningItem, header]) => {
         const { startHour, startMinute, endHour, endMinute, month, day } = planningItem

@@ -93,4 +93,43 @@ describe('Unit Tests for AgendaDay', () => {
     expect(result.get(1)[1].getIn(['titleLine', 'rawTitle'])).toContain('Another Regular Task');
     expect(result.get(2)[1].getIn(['titleLine', 'rawTitle'])).toContain('Regular Task');
   });
+
+  test('shows a weekly-repeating SCHEDULED task on a later occurrence date (Week/Month view)', () => {
+    const testOrgFile = readFixture('repeating_scheduled_task');
+    const parsedOrgFile = parseOrg(testOrgFile);
+    const files = Map({ '/testfile.org': parsedOrgFile });
+
+    // The task's base date is 2019-08-06 (Tue) with a `+1w` repeater. Three
+    // weeks later (2019-08-27) is a valid recurrence and should show up, even
+    // though it's not the literal stored date.
+    const occurrenceDayInput = {
+      files,
+      date: parseISO('2019-08-27T15:50:32.624Z'),
+      dateStart: parseISO('2019-08-26T22:00:00.000Z'),
+      dateEnd: parseISO('2019-08-27T21:59:59.999Z'),
+      agendaDefaultDeadlineDelayValue: 5,
+      agendaDefaultDeadlineDelayUnit: 'd',
+      orgHabitShowAllToday: false,
+    };
+    const occurrenceResult = component.getPlanningItemsAndHeaders(occurrenceDayInput);
+    expect(occurrenceResult.size).toBe(1);
+    expect(occurrenceResult.get(0)[1].getIn(['titleLine', 'rawTitle'])).toContain(
+      'Weekly Repeating Task'
+    );
+    // The displayed timestamp should reflect the occurrence date, not the
+    // original stored date.
+    expect(occurrenceResult.get(0)[0].getIn(['timestamp', 'day'])).toEqual('27');
+
+    // A day that isn't a multiple of the interval away from the base date
+    // (2019-08-20 is only two weeks after 2019-08-06 is fine, so pick one
+    // that's not a 7-day multiple: 2019-08-21, one day off) should not match.
+    const nonOccurrenceDayInput = {
+      ...occurrenceDayInput,
+      date: parseISO('2019-08-21T15:50:32.624Z'),
+      dateStart: parseISO('2019-08-20T22:00:00.000Z'),
+      dateEnd: parseISO('2019-08-21T21:59:59.999Z'),
+    };
+    const nonOccurrenceResult = component.getPlanningItemsAndHeaders(nonOccurrenceDayInput);
+    expect(nonOccurrenceResult.size).toBe(0);
+  });
 });

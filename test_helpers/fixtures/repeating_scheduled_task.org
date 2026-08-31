@@ -1,0 +1,7 @@
+#+TODO: TODO | DONE
+
+* TODO Weekly Repeating Task
+  SCHEDULED: <2019-08-06 Tue +1w>
+
+* TODO Non Repeating Task
+  SCHEDULED: <2019-08-13 Tue>
