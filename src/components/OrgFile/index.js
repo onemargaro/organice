@@ -871,6 +871,7 @@ class OrgFile extends PureComponent {
     return (
       <GlobalHotKeys keyMap={keyMap} handlers={handlers}>
         <div className="org-file-container" tabIndex="-1" ref={this.handleContainerRef}>
+          <div className="org-file-container__body">
           {headers.size === 0 ? (
             <div className="org-file__parsing-error-message">
               <h3>This file has no headlines</h3>
@@ -903,17 +904,6 @@ class OrgFile extends PureComponent {
             </div>
           ) : (
             <HeaderList shouldDisableActions={shouldDisableActions} />
-          )}
-
-          {isDirty && !shouldDisableDirtyIndicator && (
-            <div className="dirty-indicator">Unpushed changes</div>
-          )}
-
-          {!shouldDisableActions && (
-            <ActionDrawer
-              shouldDisableSyncButtons={shouldDisableSyncButtons}
-              staticFile={staticFile}
-            />
           )}
 
           {activePopupType ? (
@@ -998,6 +988,18 @@ class OrgFile extends PureComponent {
               )}
             </Drawer>
           ) : null}
+          </div>
+
+          {isDirty && !shouldDisableDirtyIndicator && (
+            <div className="dirty-indicator">Unpushed changes</div>
+          )}
+
+          {!shouldDisableActions && (
+            <ActionDrawer
+              shouldDisableSyncButtons={shouldDisableSyncButtons}
+              staticFile={staticFile}
+            />
+          )}
         </div>
       </GlobalHotKeys>
     );

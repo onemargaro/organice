@@ -4,7 +4,7 @@
    that it always makes sense (i.e. for the landing page and the
    actual app). */
 
-/* Tablets and bigger are constrained to a max width and are centered */
+/* Tablets and bigger get a subtle frame; the app itself always spans the full screen width. */
 @media (min-width: 767px) {
   html {
     background: var(--base2);
@@ -14,23 +14,25 @@
     border: 1px solid var(--base2);
   }
 
-  .App:not(.landing-page),
-  .App:not(.landing-page) .action-drawer-container,
-  .App:not(.landing-page) .drawer-inner-container,
-  .App:not(.landing-page) .loading-indicator {
-    max-width: 60em;
+  /* Floating action buttons stay a comfortable width instead of spreading
+     across an ultra-wide screen. */
+  .App:not(.landing-page) .action-drawer-container {
+    max-width: 33em;
     margin-left: auto;
     margin-right: auto;
   }
+}
 
-  .App:not(.landing-page) .action-drawer-container {
-    max-width: 33em;
-  }
+.App:not(.landing-page) {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 body,
 .App:not(.landing-page) {
   height: 100%;
+  min-height: 100vh;
 }
 
 html,

@@ -12,6 +12,7 @@
   left: 50%;
   top: 85px;
   width: 80%;
+  max-width: 30em;
   text-align: center;
   transform: translateX(-50%);
   z-index: 1;

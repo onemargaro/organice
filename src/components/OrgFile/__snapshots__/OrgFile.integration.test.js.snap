@@ -645,450 +645,454 @@ exports[`Render all views Org Functionality Renders everything starting from an 
     tabindex="-1"
   >
     <div
-      class="header-list-container"
+      class="org-file-container__body"
     >
       <div
-        class="header"
-        data-header-id="543"
-        style="padding-left: 20px; margin-left: 0px;"
+        class="header-list-container"
       >
         <div
-          class="left-swipe-action-container"
-          style="width: 0px; background-color: rgba(0, 0, 0, 0);"
+          class="header"
+          data-header-id="543"
+          style="padding-left: 20px; margin-left: 0px;"
         >
-          <i
-            class="fas fa-check swipe-action-container__icon swipe-action-container__icon--left"
-            style="display: none; color: rgb(0, 0, 0);"
-          />
-        </div>
-        <div
-          class="right-swipe-action-container"
-          style="width: 0px; background-color: rgba(0, 0, 0, 0);"
-        >
-          <i
-            class="fas fa-times swipe-action-container__icon swipe-action-container__icon--right"
-            style="display: none; color: rgb(0, 0, 0);"
-          />
-        </div>
-        <div
-          class="header__bullet"
-          style="margin-left: -16px;"
-        >
-          *
-        </div>
-        <div
-          class="title-line"
-        >
-          
           <div
-            style="width: 100%;"
+            class="left-swipe-action-container"
+            style="width: 0px; background-color: rgba(0, 0, 0, 0);"
           >
-            <div
-              class="title-line-text"
-            >
-              <span
-                style="word-break: break-word;"
-              >
-                <span>
-                  Top level header
-                </span>
-                ...
-              </span>
-            </div>
+            <i
+              class="fas fa-check swipe-action-container__icon swipe-action-container__icon--left"
+              style="display: none; color: rgb(0, 0, 0);"
+            />
           </div>
-        </div>
-        <div />
-      </div>
-      <div
-        class="header"
-        data-header-id="546"
-        style="padding-left: 20px; margin-left: 0px;"
-      >
-        <div
-          class="left-swipe-action-container"
-          style="width: 0px; background-color: rgba(0, 0, 0, 0);"
-        >
-          <i
-            class="fas fa-check swipe-action-container__icon swipe-action-container__icon--left"
-            style="display: none; color: rgb(0, 0, 0);"
-          />
-        </div>
-        <div
-          class="right-swipe-action-container"
-          style="width: 0px; background-color: rgba(0, 0, 0, 0);"
-        >
-          <i
-            class="fas fa-times swipe-action-container__icon swipe-action-container__icon--right"
-            style="display: none; color: rgb(0, 0, 0);"
-          />
-        </div>
-        <div
-          class="header__bullet"
-          style="margin-left: -16px;"
-        >
-          *
-        </div>
-        <div
-          class="title-line"
-        >
-          
           <div
-            style="width: 100%;"
+            class="right-swipe-action-container"
+            style="width: 0px; background-color: rgba(0, 0, 0, 0);"
           >
-            <div
-              class="title-line-text"
-            >
-              <span
-                style="word-break: break-word;"
-              >
-                <span>
-                  Another top level header
-                </span>
-                ...
-              </span>
-            </div>
+            <i
+              class="fas fa-times swipe-action-container__icon swipe-action-container__icon--right"
+              style="display: none; color: rgb(0, 0, 0);"
+            />
           </div>
-        </div>
-        <div />
-      </div>
-      <div
-        class="header"
-        data-header-id="548"
-        style="padding-left: 20px; margin-left: 0px;"
-      >
-        <div
-          class="left-swipe-action-container"
-          style="width: 0px; background-color: rgba(0, 0, 0, 0);"
-        >
-          <i
-            class="fas fa-check swipe-action-container__icon swipe-action-container__icon--left"
-            style="display: none; color: rgb(0, 0, 0);"
-          />
-        </div>
-        <div
-          class="right-swipe-action-container"
-          style="width: 0px; background-color: rgba(0, 0, 0, 0);"
-        >
-          <i
-            class="fas fa-times swipe-action-container__icon swipe-action-container__icon--right"
-            style="display: none; color: rgb(0, 0, 0);"
-          />
-        </div>
-        <div
-          class="header__bullet"
-          style="margin-left: -16px;"
-        >
-          *
-        </div>
-        <div
-          class="title-line"
-        >
-          
           <div
-            style="width: 100%;"
+            class="header__bullet"
+            style="margin-left: -16px;"
           >
+            *
+          </div>
+          <div
+            class="title-line"
+          >
+            
             <div
-              class="title-line-text"
+              style="width: 100%;"
             >
-              <span
-                style="word-break: break-word;"
+              <div
+                class="title-line-text"
               >
-                <span>
-                  A header with tags                                              
+                <span
+                  style="word-break: break-word;"
+                >
+                  <span>
+                    Top level header
+                  </span>
+                  ...
                 </span>
-                
-              </span>
-            </div>
-            <div>
-              <div
-                class="header-tag"
-              >
-                tag1
-              </div>
-              <div
-                class="header-tag"
-              >
-                tag2
               </div>
             </div>
           </div>
-        </div>
-        <div />
-      </div>
-      <div
-        class="header"
-        data-header-id="550"
-        style="padding-left: 20px; margin-left: 0px;"
-      >
-        <div
-          class="left-swipe-action-container"
-          style="width: 0px; background-color: rgba(0, 0, 0, 0);"
-        >
-          <i
-            class="fas fa-check swipe-action-container__icon swipe-action-container__icon--left"
-            style="display: none; color: rgb(0, 0, 0);"
-          />
+          <div />
         </div>
         <div
-          class="right-swipe-action-container"
-          style="width: 0px; background-color: rgba(0, 0, 0, 0);"
+          class="header"
+          data-header-id="546"
+          style="padding-left: 20px; margin-left: 0px;"
         >
-          <i
-            class="fas fa-times swipe-action-container__icon swipe-action-container__icon--right"
-            style="display: none; color: rgb(0, 0, 0);"
-          />
-        </div>
-        <div
-          class="header__bullet"
-          style="margin-left: -16px;"
-        >
-          *
-        </div>
-        <div
-          class="title-line"
-        >
-          
           <div
-            style="width: 100%;"
+            class="left-swipe-action-container"
+            style="width: 0px; background-color: rgba(0, 0, 0, 0);"
           >
+            <i
+              class="fas fa-check swipe-action-container__icon swipe-action-container__icon--left"
+              style="display: none; color: rgb(0, 0, 0);"
+            />
+          </div>
+          <div
+            class="right-swipe-action-container"
+            style="width: 0px; background-color: rgba(0, 0, 0, 0);"
+          >
+            <i
+              class="fas fa-times swipe-action-container__icon swipe-action-container__icon--right"
+              style="display: none; color: rgb(0, 0, 0);"
+            />
+          </div>
+          <div
+            class="header__bullet"
+            style="margin-left: -16px;"
+          >
+            *
+          </div>
+          <div
+            class="title-line"
+          >
+            
             <div
-              class="title-line-text"
+              style="width: 100%;"
             >
-              <span
-                style="word-break: break-word;"
+              <div
+                class="title-line-text"
               >
-                <span>
-                  A header with 
-                  <a
-                    href="https://organice.200ok.ch"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    a link
-                  </a>
+                <span
+                  style="word-break: break-word;"
+                >
+                  <span>
+                    Another top level header
+                  </span>
+                  ...
                 </span>
-                
-              </span>
+              </div>
             </div>
           </div>
-        </div>
-        <div />
-      </div>
-      <div
-        class="header"
-        data-header-id="551"
-        style="padding-left: 20px; margin-left: 0px;"
-      >
-        <div
-          class="left-swipe-action-container"
-          style="width: 0px; background-color: rgba(0, 0, 0, 0);"
-        >
-          <i
-            class="fas fa-check swipe-action-container__icon swipe-action-container__icon--left"
-            style="display: none; color: rgb(0, 0, 0);"
-          />
+          <div />
         </div>
         <div
-          class="right-swipe-action-container"
-          style="width: 0px; background-color: rgba(0, 0, 0, 0);"
+          class="header"
+          data-header-id="548"
+          style="padding-left: 20px; margin-left: 0px;"
         >
-          <i
-            class="fas fa-times swipe-action-container__icon swipe-action-container__icon--right"
-            style="display: none; color: rgb(0, 0, 0);"
-          />
-        </div>
-        <div
-          class="header__bullet"
-          style="margin-left: -16px;"
-        >
-          *
-        </div>
-        <div
-          class="title-line"
-        >
-          
           <div
-            style="width: 100%;"
+            class="left-swipe-action-container"
+            style="width: 0px; background-color: rgba(0, 0, 0, 0);"
           >
+            <i
+              class="fas fa-check swipe-action-container__icon swipe-action-container__icon--left"
+              style="display: none; color: rgb(0, 0, 0);"
+            />
+          </div>
+          <div
+            class="right-swipe-action-container"
+            style="width: 0px; background-color: rgba(0, 0, 0, 0);"
+          >
+            <i
+              class="fas fa-times swipe-action-container__icon swipe-action-container__icon--right"
+              style="display: none; color: rgb(0, 0, 0);"
+            />
+          </div>
+          <div
+            class="header__bullet"
+            style="margin-left: -16px;"
+          >
+            *
+          </div>
+          <div
+            class="title-line"
+          >
+            
             <div
-              class="title-line-text"
+              style="width: 100%;"
             >
-              <span
-                style="word-break: break-word;"
+              <div
+                class="title-line-text"
               >
-                <span>
-                  A header with various links as content
+                <span
+                  style="word-break: break-word;"
+                >
+                  <span>
+                    A header with tags                                              
+                  </span>
+                  
                 </span>
-                ...
-              </span>
+              </div>
+              <div>
+                <div
+                  class="header-tag"
+                >
+                  tag1
+                </div>
+                <div
+                  class="header-tag"
+                >
+                  tag2
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        <div />
-      </div>
-      <div
-        class="header"
-        data-header-id="552"
-        style="padding-left: 20px; margin-left: 0px;"
-      >
-        <div
-          class="left-swipe-action-container"
-          style="width: 0px; background-color: rgba(0, 0, 0, 0);"
-        >
-          <i
-            class="fas fa-check swipe-action-container__icon swipe-action-container__icon--left"
-            style="display: none; color: rgb(0, 0, 0);"
-          />
+          <div />
         </div>
         <div
-          class="right-swipe-action-container"
-          style="width: 0px; background-color: rgba(0, 0, 0, 0);"
+          class="header"
+          data-header-id="550"
+          style="padding-left: 20px; margin-left: 0px;"
         >
-          <i
-            class="fas fa-times swipe-action-container__icon swipe-action-container__icon--right"
-            style="display: none; color: rgb(0, 0, 0);"
-          />
-        </div>
-        <div
-          class="header__bullet"
-          style="margin-left: -16px;"
-        >
-          *
-        </div>
-        <div
-          class="title-line"
-        >
-          
           <div
-            style="width: 100%;"
+            class="left-swipe-action-container"
+            style="width: 0px; background-color: rgba(0, 0, 0, 0);"
           >
+            <i
+              class="fas fa-check swipe-action-container__icon swipe-action-container__icon--left"
+              style="display: none; color: rgb(0, 0, 0);"
+            />
+          </div>
+          <div
+            class="right-swipe-action-container"
+            style="width: 0px; background-color: rgba(0, 0, 0, 0);"
+          >
+            <i
+              class="fas fa-times swipe-action-container__icon swipe-action-container__icon--right"
+              style="display: none; color: rgb(0, 0, 0);"
+            />
+          </div>
+          <div
+            class="header__bullet"
+            style="margin-left: -16px;"
+          >
+            *
+          </div>
+          <div
+            class="title-line"
+          >
+            
             <div
-              class="title-line-text"
+              style="width: 100%;"
             >
-              <span
-                style="word-break: break-word;"
+              <div
+                class="title-line-text"
               >
-                <span>
-                  A header with a URL, mail address and phone number as content
+                <span
+                  style="word-break: break-word;"
+                >
+                  <span>
+                    A header with 
+                    <a
+                      href="https://organice.200ok.ch"
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
+                      a link
+                    </a>
+                  </span>
+                  
                 </span>
-                ...
-              </span>
+              </div>
             </div>
           </div>
-        </div>
-        <div />
-      </div>
-      <div
-        class="header"
-        data-header-id="556"
-        style="padding-left: 20px; margin-left: 0px;"
-      >
-        <div
-          class="left-swipe-action-container"
-          style="width: 0px; background-color: rgba(0, 0, 0, 0);"
-        >
-          <i
-            class="fas fa-check swipe-action-container__icon swipe-action-container__icon--left"
-            style="display: none; color: rgb(0, 0, 0);"
-          />
+          <div />
         </div>
         <div
-          class="right-swipe-action-container"
-          style="width: 0px; background-color: rgba(0, 0, 0, 0);"
+          class="header"
+          data-header-id="551"
+          style="padding-left: 20px; margin-left: 0px;"
         >
-          <i
-            class="fas fa-times swipe-action-container__icon swipe-action-container__icon--right"
-            style="display: none; color: rgb(0, 0, 0);"
-          />
-        </div>
-        <div
-          class="header__bullet"
-          style="margin-left: -16px;"
-        >
-          *
-        </div>
-        <div
-          class="title-line"
-        >
-          
           <div
-            style="width: 100%;"
+            class="left-swipe-action-container"
+            style="width: 0px; background-color: rgba(0, 0, 0, 0);"
           >
+            <i
+              class="fas fa-check swipe-action-container__icon swipe-action-container__icon--left"
+              style="display: none; color: rgb(0, 0, 0);"
+            />
+          </div>
+          <div
+            class="right-swipe-action-container"
+            style="width: 0px; background-color: rgba(0, 0, 0, 0);"
+          >
+            <i
+              class="fas fa-times swipe-action-container__icon swipe-action-container__icon--right"
+              style="display: none; color: rgb(0, 0, 0);"
+            />
+          </div>
+          <div
+            class="header__bullet"
+            style="margin-left: -16px;"
+          >
+            *
+          </div>
+          <div
+            class="title-line"
+          >
+            
             <div
-              class="title-line-text"
+              style="width: 100%;"
             >
-              <span
-                style="word-break: break-word;"
+              <div
+                class="title-line-text"
               >
-                <span>
-                  A header with plain list items
+                <span
+                  style="word-break: break-word;"
+                >
+                  <span>
+                    A header with various links as content
+                  </span>
+                  ...
                 </span>
-                ...
-              </span>
+              </div>
             </div>
           </div>
-        </div>
-        <div />
-      </div>
-      <div
-        class="header"
-        data-header-id="557"
-        style="padding-left: 20px; margin-left: 0px;"
-      >
-        <div
-          class="left-swipe-action-container"
-          style="width: 0px; background-color: rgba(0, 0, 0, 0);"
-        >
-          <i
-            class="fas fa-check swipe-action-container__icon swipe-action-container__icon--left"
-            style="display: none; color: rgb(0, 0, 0);"
-          />
+          <div />
         </div>
         <div
-          class="right-swipe-action-container"
-          style="width: 0px; background-color: rgba(0, 0, 0, 0);"
+          class="header"
+          data-header-id="552"
+          style="padding-left: 20px; margin-left: 0px;"
         >
-          <i
-            class="fas fa-times swipe-action-container__icon swipe-action-container__icon--right"
-            style="display: none; color: rgb(0, 0, 0);"
-          />
-        </div>
-        <div
-          class="header__bullet"
-          style="margin-left: -16px;"
-        >
-          *
-        </div>
-        <div
-          class="title-line"
-        >
-          <span
-            class="todo-keyword todo-keyword--done-state"
-          >
-            FINISHED
-          </span>
           <div
-            style="width: 100%;"
+            class="left-swipe-action-container"
+            style="width: 0px; background-color: rgba(0, 0, 0, 0);"
           >
+            <i
+              class="fas fa-check swipe-action-container__icon swipe-action-container__icon--left"
+              style="display: none; color: rgb(0, 0, 0);"
+            />
+          </div>
+          <div
+            class="right-swipe-action-container"
+            style="width: 0px; background-color: rgba(0, 0, 0, 0);"
+          >
+            <i
+              class="fas fa-times swipe-action-container__icon swipe-action-container__icon--right"
+              style="display: none; color: rgb(0, 0, 0);"
+            />
+          </div>
+          <div
+            class="header__bullet"
+            style="margin-left: -16px;"
+          >
+            *
+          </div>
+          <div
+            class="title-line"
+          >
+            
             <div
-              class="title-line-text"
+              style="width: 100%;"
             >
-              <span
-                style="word-break: break-word;"
+              <div
+                class="title-line-text"
               >
-                <span>
-                  A header with a custom todo sequence in DONE state
+                <span
+                  style="word-break: break-word;"
+                >
+                  <span>
+                    A header with a URL, mail address and phone number as content
+                  </span>
+                  ...
                 </span>
-                
-              </span>
+              </div>
             </div>
           </div>
+          <div />
         </div>
-        <div />
+        <div
+          class="header"
+          data-header-id="556"
+          style="padding-left: 20px; margin-left: 0px;"
+        >
+          <div
+            class="left-swipe-action-container"
+            style="width: 0px; background-color: rgba(0, 0, 0, 0);"
+          >
+            <i
+              class="fas fa-check swipe-action-container__icon swipe-action-container__icon--left"
+              style="display: none; color: rgb(0, 0, 0);"
+            />
+          </div>
+          <div
+            class="right-swipe-action-container"
+            style="width: 0px; background-color: rgba(0, 0, 0, 0);"
+          >
+            <i
+              class="fas fa-times swipe-action-container__icon swipe-action-container__icon--right"
+              style="display: none; color: rgb(0, 0, 0);"
+            />
+          </div>
+          <div
+            class="header__bullet"
+            style="margin-left: -16px;"
+          >
+            *
+          </div>
+          <div
+            class="title-line"
+          >
+            
+            <div
+              style="width: 100%;"
+            >
+              <div
+                class="title-line-text"
+              >
+                <span
+                  style="word-break: break-word;"
+                >
+                  <span>
+                    A header with plain list items
+                  </span>
+                  ...
+                </span>
+              </div>
+            </div>
+          </div>
+          <div />
+        </div>
+        <div
+          class="header"
+          data-header-id="557"
+          style="padding-left: 20px; margin-left: 0px;"
+        >
+          <div
+            class="left-swipe-action-container"
+            style="width: 0px; background-color: rgba(0, 0, 0, 0);"
+          >
+            <i
+              class="fas fa-check swipe-action-container__icon swipe-action-container__icon--left"
+              style="display: none; color: rgb(0, 0, 0);"
+            />
+          </div>
+          <div
+            class="right-swipe-action-container"
+            style="width: 0px; background-color: rgba(0, 0, 0, 0);"
+          >
+            <i
+              class="fas fa-times swipe-action-container__icon swipe-action-container__icon--right"
+              style="display: none; color: rgb(0, 0, 0);"
+            />
+          </div>
+          <div
+            class="header__bullet"
+            style="margin-left: -16px;"
+          >
+            *
+          </div>
+          <div
+            class="title-line"
+          >
+            <span
+              class="todo-keyword todo-keyword--done-state"
+            >
+              FINISHED
+            </span>
+            <div
+              style="width: 100%;"
+            >
+              <div
+                class="title-line-text"
+              >
+                <span
+                  style="word-break: break-word;"
+                >
+                  <span>
+                    A header with a custom todo sequence in DONE state
+                  </span>
+                  
+                </span>
+              </div>
+            </div>
+          </div>
+          <div />
+        </div>
+        <div
+          style="height: 90px;"
+        />
       </div>
-      <div
-        style="height: 90px;"
-      />
     </div>
     <div
       class="action-drawer-container nice-scroll"

@@ -7,12 +7,31 @@ import classNames from 'classnames';
 
 import { maybeSpring } from '../../../lib/reduced_motion';
 
+const splitPanelMediaQuery = '(min-width: 1024px)';
+
 export default ({ children, shouldIncludeCloseButton, onClose, maxSize = false }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [dragOffsetY, setDragOffsetY] = useState(null);
+  const [isSplitPanel, setIsSplitPanel] = useState(
+    () => typeof window.matchMedia === 'function' && window.matchMedia(splitPanelMediaQuery).matches
+  );
 
   useLayoutEffect(() => {
     setIsVisible(true);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window.matchMedia !== 'function') {
+      return;
+    }
+
+    const mediaQueryList = window.matchMedia(splitPanelMediaQuery);
+    const handleChange = () => setIsSplitPanel(mediaQueryList.matches);
+
+    if ('addEventListener' in mediaQueryList) {
+      mediaQueryList.addEventListener('change', handleChange);
+      return () => mediaQueryList.removeEventListener('change', handleChange);
+    }
   }, []);
 
   const initialClientY = useRef();
@@ -58,7 +77,7 @@ export default ({ children, shouldIncludeCloseButton, onClose, maxSize = false }
     };
     const handleTouchEndOrCancel = () => endInnerContainerDrag();
 
-    if (!!innerContainer.current) {
+    if (!!innerContainer.current && !isSplitPanel) {
       // Super annoying logic for disabling scrolling of the body when a slide up is active.
       // Briefly: if we're already at the top of our Drawer and trying to scroll up, disable
       // scrolling. Likewise, if we're already at the bottom of our Drawer and trying to scroll
@@ -82,10 +101,16 @@ export default ({ children, shouldIncludeCloseButton, onClose, maxSize = false }
     } else {
       return null;
     }
-  }, [innerContainer, dragOffsetY]);
+  }, [innerContainer, dragOffsetY, isSplitPanel]);
 
   const outerClassName = classNames('drawer-outer-container', {
     'drawer-outer-container--visible': isVisible,
+    'drawer-outer-container--split-panel': isSplitPanel,
+  });
+
+  const innerClassName = classNames('drawer-inner-container', 'nice-scroll', {
+    'drawer-inner-container--split-panel': isSplitPanel,
+    'drawer-inner-container--split-visible': isSplitPanel && isVisible,
   });
 
   const innerStyle = {
@@ -99,12 +124,14 @@ export default ({ children, shouldIncludeCloseButton, onClose, maxSize = false }
   return (
     <Motion style={innerStyle} onRest={handleAnimationRest}>
       {(style) => {
-        const interpolatedStyle = {
-          transform: `translateY(${style.offsetY}px)`,
-        };
+        const interpolatedStyle = isSplitPanel
+          ? {}
+          : {
+              transform: `translateY(${style.offsetY}px)`,
+            };
 
         // For maximized drawers, there's different rules:
-        if (maxSize) {
+        if (maxSize && !isSplitPanel) {
           interpolatedStyle.height = '92%';
           interpolatedStyle.overflow = 'none';
         }
@@ -112,19 +139,19 @@ export default ({ children, shouldIncludeCloseButton, onClose, maxSize = false }
         return (
           <div
             className={outerClassName}
-            onClick={!!onClose ? handleClose : null}
+            onClick={!isSplitPanel && !!onClose ? handleClose : null}
             data-testid="drawer-outer-container"
           >
             <div
               onClick={handleInnerContainerClick}
-              className="drawer-inner-container nice-scroll"
+              className={innerClassName}
               data-testid="drawer"
               ref={innerContainer}
               style={interpolatedStyle}
             >
               <div className="drawer__grabber" />
 
-              {shouldIncludeCloseButton && (
+              {(shouldIncludeCloseButton || isSplitPanel) && (
                 <button className="fas fa-times fa-lg drawer__close-button" onClick={handleClose} />
               )}
 

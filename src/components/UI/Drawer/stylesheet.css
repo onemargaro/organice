@@ -23,7 +23,7 @@
   left: -1px;
   right: -1px;
 
-  padding: 15px 10px;
+  padding: 16px 20px 28px;
 
   border-top: 1px solid var(--base2);
   border-bottom: none;
@@ -38,8 +38,8 @@
 
 .drawer__close-button {
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: 18px;
+  right: 18px;
 
   color: var(--base2);
 
@@ -59,12 +59,46 @@
   margin-left: auto;
   margin-right: auto;
 
-  margin-top: -5px;
-  margin-bottom: 5px;
+  margin-top: -4px;
+  margin-bottom: 14px;
 }
 
 .drawer-modal__title {
   color: var(--base2);
 
   margin-top: 0;
+}
+
+@media (min-width: 1024px) {
+  .drawer-outer-container--split-panel {
+    position: relative;
+    inset: auto;
+    flex: 0 0 38%;
+    max-width: 420px;
+    z-index: auto;
+    background-color: transparent;
+  }
+
+  .drawer-inner-container--split-panel {
+    position: relative;
+    inset: auto;
+    height: 100%;
+    max-height: none;
+
+    border-top: none;
+    border-left: 1px solid var(--base2);
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+
+    transform: translateX(100%);
+    transition: transform 250ms ease;
+  }
+
+  .drawer-inner-container--split-panel.drawer-inner-container--split-visible {
+    transform: translateX(0);
+  }
+
+  .drawer-outer-container--split-panel .drawer__grabber {
+    display: none;
+  }
 }

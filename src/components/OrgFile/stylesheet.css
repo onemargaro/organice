@@ -27,3 +27,16 @@
   padding: 10px;
   font-size: 20px;
 }
+
+@media (min-width: 1024px) {
+  .org-file-container__body {
+    display: flex;
+    align-items: stretch;
+  }
+
+  .org-file-container__body > .header-list-container,
+  .org-file-container__body > .org-file__parsing-error-message {
+    flex: 1;
+    min-width: 0;
+  }
+}
