@@ -258,7 +258,7 @@ class OrgFile extends PureComponent {
         : [])
     );
     this.props.base.closePopup();
-    this.container.focus();
+    if (this.container) this.container.focus();
   }
 
   handleAddHeaderHotKey() {
@@ -921,7 +921,7 @@ class OrgFile extends PureComponent {
                   captureTemplate: null,
                   captureShouldPrepend: false,
                 });
-                this.container.focus();
+                if (this.container) this.container.focus();
               }}
               maxSize={this.getPopupMaxSize(activePopupType)}
             >
