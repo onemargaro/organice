@@ -11,10 +11,10 @@
 }
 
 .header-list-container--narrowed {
-  box-shadow: inset 0px 0px 5px 0px var(--base0-soft);
+  border: 1px solid var(--base2);
   margin: 0;
   margin-top: 10px;
-  border-radius: 5px;
+  border-radius: 4px;
 }
 
 .header-list-container--reordering {

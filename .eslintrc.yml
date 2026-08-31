@@ -6,6 +6,7 @@ extends:
   - 'plugin:jest/recommended'
   - 'plugin:react/recommended'
   - 'plugin:react-redux/recommended'
+  - 'plugin:jsx-a11y/recommended'
 globals:
   Atomics: readonly
   SharedArrayBuffer: readonly
@@ -19,6 +20,7 @@ plugins:
   - jest
   - react
   - react-redux
+  - jsx-a11y
 rules:
   no-extra-boolean-cast: off
   no-empty: off
@@ -35,6 +37,14 @@ rules:
   no-redeclare:
     - 'error'
     - builtinGlobals: false
+  # TODO: pre-existing violations across the codebase, not yet fixed. Downgraded to
+  # warn (not disabled) so `yarn lint`/CI stay green while the gaps remain visible.
+  # See src/components/UI/Switch, Checkbox, and the HeaderContent/ListActionDrawer
+  # components (below, under overrides) for the fixed pattern to follow.
+  jsx-a11y/click-events-have-key-events: warn
+  jsx-a11y/no-static-element-interactions: warn
+  jsx-a11y/no-noninteractive-element-interactions: warn
+  jsx-a11y/no-autofocus: warn
 settings:
   react:
     version: detect
@@ -51,3 +61,12 @@ overrides:
       jest/no-disabled-tests: off
       jest/no-test-callback: off
       jest/no-standalone-expect: off
+  - files:
+      - 'src/components/UI/Switch/index.js'
+      - 'src/components/UI/Checkbox/index.js'
+      - 'src/components/OrgFile/components/HeaderContent/components/PropertyListItems/index.js'
+      - 'src/components/OrgFile/components/HeaderContent/components/LogBookEntries/index.js'
+      - 'src/components/OrgFile/components/AttributedString/components/ListPart/ListActionDrawer/index.js'
+    rules:
+      jsx-a11y/click-events-have-key-events: error
+      jsx-a11y/no-static-element-interactions: error

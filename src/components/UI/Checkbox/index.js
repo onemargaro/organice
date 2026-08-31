@@ -1,7 +1,9 @@
 import React from 'react';
-import { Motion, spring } from 'react-motion';
+import { Motion } from 'react-motion';
 
 import { interpolateColors, rgbaObject, rgbaString } from '../../../lib/color';
+import { maybeSpring } from '../../../lib/reduced_motion';
+import { handleKeyboardActivation } from '../../../lib/interaction';
 
 import './stylesheet.css';
 
@@ -10,7 +12,7 @@ export default ({ state, onClick }) => {
   const checkedColor = rgbaObject(238, 232, 213, 1);
 
   const checkboxStyle = {
-    colorFactor: spring(
+    colorFactor: maybeSpring(
       {
         checked: 1,
         partial: 1,
@@ -28,7 +30,15 @@ export default ({ state, onClick }) => {
         );
 
         return (
-          <div className="checkbox" onClick={onClick} style={{ backgroundColor }}>
+          <div
+            className="checkbox"
+            onClick={onClick}
+            style={{ backgroundColor }}
+            role="checkbox"
+            aria-checked={state === 'partial' ? 'mixed' : state === 'checked'}
+            tabIndex={0}
+            onKeyDown={handleKeyboardActivation(onClick)}
+          >
             <div className="checkbox__inner-container">
               {state === 'checked' && <i className="fas fa-check" />}
               {state === 'partial' && <i className="fas fa-minus" />}

@@ -2,8 +2,10 @@ import React, { useState, useEffect, useLayoutEffect, useRef } from 'react';
 
 import './stylesheet.css';
 
-import { Motion, spring } from 'react-motion';
+import { Motion } from 'react-motion';
 import classNames from 'classnames';
+
+import { maybeSpring } from '../../../lib/reduced_motion';
 
 export default ({ children, shouldIncludeCloseButton, onClose, maxSize = false }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -89,7 +91,7 @@ export default ({ children, shouldIncludeCloseButton, onClose, maxSize = false }
   const innerStyle = {
     offsetY:
       dragOffsetY ||
-      spring(isVisible ? 0 : innerContainerHeight.current || window.innerHeight, {
+      maybeSpring(isVisible ? 0 : innerContainerHeight.current || window.innerHeight, {
         stiffness: 300,
       }),
   };

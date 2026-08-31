@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Motion, spring } from 'react-motion';
+import { Motion } from 'react-motion';
 
 import './stylesheet.css';
+import { maybeSpring } from '../../lib/reduced_motion';
 
 export default ({ message }) => {
   const [shouldRenderIndicator, setShouldRenderIndicator] = useState(true);
@@ -30,7 +31,7 @@ export default ({ message }) => {
   }
 
   const style = {
-    opacity: spring(!!message ? 0.9 : 0, { stiffness: 300 }),
+    opacity: maybeSpring(!!message ? 0.9 : 0, { stiffness: 300 }),
   };
 
   return (

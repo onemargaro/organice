@@ -2,7 +2,7 @@ import React, { Fragment, useState, useMemo, useRef } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { Motion, spring } from 'react-motion';
+import { Motion } from 'react-motion';
 
 import './stylesheet.css';
 
@@ -16,6 +16,7 @@ import sampleCaptureTemplates from '../../../../lib/sample_capture_templates';
 
 import ActionButton from './components/ActionButton/';
 import { determineIncludedFiles } from '../../../../reducers/org';
+import { maybeSpring } from '../../../../lib/reduced_motion';
 
 const ActionDrawer = ({
   org,
@@ -140,7 +141,7 @@ const ActionDrawer = ({
     };
 
     const animatedStyle = {
-      bottom: spring(isDisplayingCaptureButtons ? 70 : 0, { stiffness: 300 }),
+      bottom: maybeSpring(isDisplayingCaptureButtons ? 70 : 0, { stiffness: 300 }),
     };
 
     return (
@@ -195,13 +196,13 @@ const ActionDrawer = ({
     }
 
     const animatedStyles = {
-      centerXOffset: spring(isDisplayingArrowButtons ? centerXOffset : 0, { stiffness: 300 }),
-      topRowYOffset: spring(isDisplayingArrowButtons ? 150 : 0, { stiffness: 300 }),
-      bottomRowYOffset: spring(isDisplayingArrowButtons ? 80 : 0, { stiffness: 300 }),
-      firstColumnXOffset: spring(isDisplayingArrowButtons ? 70 : 0, {
+      centerXOffset: maybeSpring(isDisplayingArrowButtons ? centerXOffset : 0, { stiffness: 300 }),
+      topRowYOffset: maybeSpring(isDisplayingArrowButtons ? 150 : 0, { stiffness: 300 }),
+      bottomRowYOffset: maybeSpring(isDisplayingArrowButtons ? 80 : 0, { stiffness: 300 }),
+      firstColumnXOffset: maybeSpring(isDisplayingArrowButtons ? 70 : 0, {
         stiffness: 300,
       }),
-      secondColumnXOffset: spring(isDisplayingArrowButtons ? 140 : 0, {
+      secondColumnXOffset: maybeSpring(isDisplayingArrowButtons ? 140 : 0, {
         stiffness: 300,
       }),
     };

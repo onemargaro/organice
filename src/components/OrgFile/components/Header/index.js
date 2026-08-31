@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { Motion, spring } from 'react-motion';
+import { Motion } from 'react-motion';
 import { UnmountClosed as Collapse } from 'react-collapse';
 
 import * as orgActions from '../../../../actions/org';
@@ -23,6 +23,7 @@ import { getCurrentTimestamp, millisDuration } from '../../../../lib/timestamps'
 import { Map } from 'immutable';
 import { shareContent } from '../../../../lib/share_utils';
 import { exportHeaderWithSubheaders } from '../../../../lib/export_org';
+import { maybeSpring } from '../../../../lib/reduced_motion';
 
 class Header extends PureComponent {
   SWIPE_ACTION_ACTIVATION_DISTANCE = 80;
@@ -475,13 +476,13 @@ class Header extends PureComponent {
       !!dragStartX && !!currentDragX && isDraggingFreely
         ? currentDragX - dragStartX
         : isPlayingRemoveAnimation
-        ? spring(-1 * containerWidth, { stiffness: 300 })
-        : spring(0, { stiffness: 300 });
+        ? maybeSpring(-1 * containerWidth, { stiffness: 300 })
+        : maybeSpring(0, { stiffness: 300 });
 
     const style = {
       paddingLeft: 20 * indentLevel,
       marginLeft,
-      heightFactor: isPlayingRemoveAnimation ? spring(0, { stiffness: 300 }) : 1,
+      heightFactor: isPlayingRemoveAnimation ? maybeSpring(0, { stiffness: 300 }) : 1,
     };
 
     const className = classNames('header', {
@@ -516,11 +517,11 @@ class Header extends PureComponent {
 
           const leftSwipeActionContainerStyle = {
             width: interpolatedStyle.marginLeft,
-            backgroundColorFactor: spring(isLeftActionActivated ? 1 : 0, { stiffness: 300 }),
+            backgroundColorFactor: maybeSpring(isLeftActionActivated ? 1 : 0, { stiffness: 300 }),
           };
           const rightSwipeActionContainerStyle = {
             width: -1 * interpolatedStyle.marginLeft,
-            backgroundColorFactor: spring(isRightActionActivated ? 1 : 0, { stiffness: 300 }),
+            backgroundColorFactor: maybeSpring(isRightActionActivated ? 1 : 0, { stiffness: 300 }),
           };
 
           const { heightFactor, ...headerStyle } = interpolatedStyle;

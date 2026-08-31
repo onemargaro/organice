@@ -1,7 +1,9 @@
 import React from 'react';
-import { Motion, spring } from 'react-motion';
+import { Motion } from 'react-motion';
 
 import { interpolateColors, rgbaObject, rgbaString } from '../../../lib/color';
+import { maybeSpring } from '../../../lib/reduced_motion';
+import { handleKeyboardActivation } from '../../../lib/interaction';
 
 import './stylesheet.css';
 
@@ -10,11 +12,11 @@ export default ({ isEnabled, onToggle }) => {
   const enabledColor = rgbaObject(238, 232, 213, 1);
 
   const switchStyle = {
-    colorFactor: spring(isEnabled ? 1 : 0, { stiffness: 300 }),
+    colorFactor: maybeSpring(isEnabled ? 1 : 0, { stiffness: 300 }),
   };
 
   const grabberStyle = {
-    marginLeft: spring(isEnabled ? 42 : 0, { stiffness: 300 }),
+    marginLeft: maybeSpring(isEnabled ? 42 : 0, { stiffness: 300 }),
   };
 
   return (
@@ -25,7 +27,15 @@ export default ({ isEnabled, onToggle }) => {
         );
 
         return (
-          <div className="switch" style={{ backgroundColor }} onClick={onToggle}>
+          <div
+            className="switch"
+            style={{ backgroundColor }}
+            onClick={onToggle}
+            role="switch"
+            aria-checked={isEnabled}
+            tabIndex={0}
+            onKeyDown={handleKeyboardActivation(onToggle)}
+          >
             <Motion style={grabberStyle}>
               {(style) => <div className="switch__grabber" style={style} />}
             </Motion>

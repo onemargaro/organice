@@ -12,8 +12,7 @@
 .switch__grabber {
   width: 42px;
   height: 28px;
-  border: 1px solid var(--base2);
+  border: 1px solid var(--base1);
   box-sizing: border-box;
-  box-shadow: 1px 1px 5px 0px var(--base0-soft);
   background-color: var(--base00);
 }

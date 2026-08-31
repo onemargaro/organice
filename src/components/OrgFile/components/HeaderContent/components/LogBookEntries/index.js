@@ -3,6 +3,7 @@ import React, { Fragment, useState } from 'react';
 import './stylesheet.css';
 
 import { renderAsText, timestampDuration } from '../../../../../../lib/timestamps';
+import { handleKeyboardActivation } from '../../../../../../lib/interaction';
 
 export default ({ logBookEntries, onTimestampClick, shouldDisableActions }) => {
   const [isDrawerCollapsed, setIsDrawerCollapsed] = useState(true);
@@ -14,7 +15,13 @@ export default ({ logBookEntries, onTimestampClick, shouldDisableActions }) => {
 
   return logBookEntries.size === 0 ? null : (
     <div className="logbook-entries-container">
-      <div className="logbook-entries__logbook" onClick={handleCollapseToggle}>
+      <div
+        className="logbook-entries__logbook"
+        onClick={handleCollapseToggle}
+        role="button"
+        tabIndex={0}
+        onKeyDown={handleKeyboardActivation(handleCollapseToggle)}
+      >
         :LOGBOOK:
         {isDrawerCollapsed ? '...' : ''}
       </div>
@@ -28,7 +35,13 @@ export default ({ logBookEntries, onTimestampClick, shouldDisableActions }) => {
             ) : (
               <div className="logbook-entries__item-container" key={entry.get('id')}>
                 <span className="logbook-entries__item-clock">CLOCK:</span>
-                <span className="logbook-entries__item-start" onClick={onClick(index, 'start')}>
+                <span
+                  className="logbook-entries__item-start"
+                  onClick={onClick(index, 'start')}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={handleKeyboardActivation(onClick(index, 'start'))}
+                >
                   {renderAsText(entry.get('start'))}
                 </span>
                 {entry.get('end') === null ? (
@@ -36,7 +49,13 @@ export default ({ logBookEntries, onTimestampClick, shouldDisableActions }) => {
                 ) : (
                   <Fragment>
                     --
-                    <span className="logbook-entries__item-end" onClick={onClick(index, 'end')}>
+                    <span
+                      className="logbook-entries__item-end"
+                      onClick={onClick(index, 'end')}
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={handleKeyboardActivation(onClick(index, 'end'))}
+                    >
                       {renderAsText(entry.get('end'))}
                     </span>
                     <span className="logbook-entries__item-duration">

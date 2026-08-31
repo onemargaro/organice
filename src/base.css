@@ -11,7 +11,7 @@
   }
 
   .App:not(.landing-page) {
-    box-shadow: 0 2em 2em 1.5em var(--base1-soft);
+    border: 1px solid var(--base2);
   }
 
   .App:not(.landing-page),
@@ -36,7 +36,7 @@ body,
 html,
 body,
 .App:not(.landing-page) {
-  color: var(--base00);
+  color: var(--base01);
   background: var(--base3);
   user-select: none;
 }
@@ -47,6 +47,15 @@ body,
 
 .App:not(.landing-page) h2 {
   color: var(--base01) !important;
+}
+
+.App:not(.landing-page) .btn,
+.App:not(.landing-page) .btn-passive,
+.App:not(.landing-page) .checkbox,
+.App:not(.landing-page) .switch,
+.App:not(.landing-page) .textfield {
+  transition: background-color 150ms ease, border-color 150ms ease, opacity 150ms ease,
+    transform 150ms ease;
 }
 
 .App:not(.landing-page) .btn {
@@ -65,6 +74,18 @@ body,
 
   border: 0;
   padding: 8px 16px;
+}
+
+.App:not(.landing-page) .btn:hover,
+.App:not(.landing-page) .btn-passive:hover {
+  opacity: 0.85;
+}
+
+.App:not(.landing-page) .btn:active,
+.App:not(.landing-page) .btn-passive:active,
+.App:not(.landing-page) .checkbox:active,
+.App:not(.landing-page) .switch:active {
+  transform: scale(0.97);
 }
 
 .App:not(.landing-page) .btn a {
@@ -108,12 +129,25 @@ body,
   margin: 4px 0 0;
 }
 
-.App:not(.landing-page) div[tabindex='-1']:focus {
-  outline: 0;
+.App:not(.landing-page) div[tabindex='-1']:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
 }
 
 .App:not(.landing-page) button {
   touch-action: manipulation;
+}
+
+.App:not(.landing-page) a:focus-visible,
+.App:not(.landing-page) button:focus-visible,
+.App:not(.landing-page) input:focus-visible,
+.App:not(.landing-page) textarea:focus-visible,
+.App:not(.landing-page) [role='button']:focus-visible,
+.App:not(.landing-page) [role='checkbox']:focus-visible,
+.App:not(.landing-page) [role='switch']:focus-visible,
+.App:not(.landing-page) [tabindex]:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
 }
 
 .App:not(.landing-page) .checkbox {
@@ -137,5 +171,13 @@ body,
   .App:not(.landing-page) {
     height: 100% !important;
     overflow: visible;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .App:not(.landing-page) * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }

@@ -15,8 +15,8 @@
 .header-action-drawer__ff-click-catcher-container {
   position: relative;
   cursor: pointer;
-  /* Base transition for transform, color, and box-shadow */
-  transition: transform 0.1s ease-in-out, color 0.1s ease-in-out, box-shadow 0.15s ease-in-out, background-color 0.1s ease-in-out;
+  /* Base transition for transform, color, and outline (long-press feedback ring) */
+  transition: transform 0.1s ease-in-out, color 0.1s ease-in-out, outline 0.15s ease-in-out, background-color 0.1s ease-in-out;
 }
 
 .header-action-drawer__ff-click-catcher-container:hover {
@@ -28,8 +28,8 @@
   color: var(--base02); /* Or a specific feedback color if preferred */
   background-color: rgba(0, 0, 0, 0.05); /* Subtle background change */
   border-radius: 4px;
-  /* Assuming var(--base02) is a greyish color like rgb(131, 148, 150) for the shadow */
-  box-shadow: 0 0 0 18px rgba(131, 148, 150, 0.25); /* Increased visible shadow during press */
+  /* Assuming var(--base02) is a greyish color like rgb(131, 148, 150) for the ring */
+  outline: 18px solid rgba(131, 148, 150, 0.25); /* Flat feedback ring during press */
 }
 
 .header-action-drawer__ff-click-catcher-container.header-action-drawer__long-press-success {
@@ -37,8 +37,8 @@
   color: var(--base0B); /* Success color for the icon */
   background-color: rgba(0, 0, 0, 0.05); /* Can use a success-themed background if available, e.g., var(--base0B-alpha-low) */
   border-radius: 4px;
-  /* Assuming var(--base0B) is a success/greenish color like rgb(133, 153, 0) for the shadow */
-  box-shadow: 0 0 0 28px rgba(133, 153, 0, 0.3); /* Increased larger, more prominent shadow on success */
+  /* Assuming var(--base0B) is a success/greenish color like rgb(133, 153, 0) for the ring */
+  outline: 28px solid rgba(133, 153, 0, 0.3); /* Larger flat feedback ring on success */
 }
 
 .header-action-drawer__ff-click-catcher {
