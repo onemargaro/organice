@@ -351,6 +351,74 @@ const themes = {
       '--green-soft': 'rgba(133, 153, 0, 0.28)',
     },
   },
+  Nord: {
+    Light: {
+      /*
+        see https://www.nordtheme.com/docs/colors-and-palettes for palette.
+        Nord is primarily a dark theme; this light variant crosses over into
+        the Polar Night colors once Snow Storm alone no longer gives enough
+        contrast for text against the light background.
+      */
+      // background and highlights (Snow Storm)
+      '--base3': '#ECEFF4', // nord6
+      '--base2': '#E5E9F0', // nord5
+      '--base1': '#D8DEE9', // nord4
+      '--base0': '#4C566A', // nord3
+      // highlights (Polar Night)
+      '--base00': '#434C5E', // nord2
+      '--base01': '#434C5E', // nord2
+      '--base02': '#3B4252', // nord1
+      '--base03': '#2E3440', // nord0
+      // shadows
+      '--base0-soft': 'rgba(76, 86, 106, 0.75)',
+      // highlighted backgrounds
+      '--base1-soft': 'rgba(216, 222, 233, 0.4)',
+      // header colors (Frost)
+      '--blue': '#81A1C1', // nord9
+      '--green': '#A3BE8C', // nord14
+      '--cyan': '#88C0D0', // nord8
+      '--yellow': '#EBCB8B', // nord13
+      // additional colors (Aurora)
+      '--orange': '#D08770', // nord12
+      '--red': '#BF616A', // nord11
+      '--magenta': '#B48EAD', // nord15
+      '--violet': '#B48EAD', // nord15
+      // table highlight
+      '--green-soft': 'rgba(133, 153, 0, 0.28)',
+    },
+    Dark: {
+      /*
+        see https://www.nordtheme.com/docs/colors-and-palettes for palette.
+        Polar Night backgrounds, Snow Storm text, Frost/Aurora accents.
+      */
+      // background and highlights (Polar Night)
+      '--base3': '#2E3440', // nord0
+      '--base2': '#3B4252', // nord1
+      '--base1': '#434C5E', // nord2
+      '--base0': '#4C566A', // nord3
+      // highlights (Snow Storm)
+      '--base00': '#D8DEE9', // nord4
+      '--base01': '#E5E9F0', // nord5
+      '--base02': '#ECEFF4', // nord6
+      '--base03': '#FFFFFF',
+      // shadows
+      '--base0-soft': 'rgba(46, 52, 64, 0.75)',
+      // highlighted backgrounds
+      '--base1-soft': 'rgba(46, 52, 64, 0.4)',
+      // header colors (Frost)
+      '--blue': '#81A1C1', // nord9
+      '--green': '#A3BE8C', // nord14
+      '--cyan': '#88C0D0', // nord8
+      '--yellow': '#EBCB8B', // nord13
+      // additional colors (Aurora)
+      '--orange': '#D08770', // nord12
+      '--red': '#BF616A', // nord11
+      '--magenta': '#B48EAD', // nord15
+      '--violet': '#B48EAD', // nord15
+      // table highlight
+      '--green-soft': 'rgba(133, 153, 0, 0.28)',
+    },
+  },
 };
 
 export const loadTheme = (theme = 'Solarized', colorScheme = 'Light') => {
