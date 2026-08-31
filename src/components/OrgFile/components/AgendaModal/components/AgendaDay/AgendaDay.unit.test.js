@@ -94,6 +94,28 @@ describe('Unit Tests for AgendaDay', () => {
     expect(result.get(2)[1].getIn(['titleLine', 'rawTitle'])).toContain('Regular Task');
   });
 
+  test('sorts a 9am task before a 10am task (numeric, not lexicographic, hour comparison)', () => {
+    const input = {
+      headers: [],
+      todoKeywordSets: [],
+      date: parseISO('2019-08-27T15:50:32.624Z'),
+      agendaDefaultDeadlineDelayValue: 5,
+      agendaDefaultDeadlineDelayUnit: 'd',
+      dateStart: parseISO('2019-08-26T22:00:00.000Z'),
+      dateEnd: parseISO('2019-08-27T21:59:59.999Z'),
+      orgHabitShowAllToday: false,
+    };
+    const testOrgFile = readFixture('tasks_with_double_digit_hour');
+    const parsedOrgFile = parseOrg(testOrgFile);
+    input.files = Map({ '/testfile.org': parsedOrgFile });
+
+    const result = component.getPlanningItemsAndHeaders(input);
+
+    expect(result.size).toBe(2);
+    expect(result.get(0)[1].getIn(['titleLine', 'rawTitle'])).toContain('Nine AM Task');
+    expect(result.get(1)[1].getIn(['titleLine', 'rawTitle'])).toContain('Ten AM Task');
+  });
+
   test('shows a weekly-repeating SCHEDULED task on a later occurrence date (Week/Month view)', () => {
     const testOrgFile = readFixture('repeating_scheduled_task');
     const parsedOrgFile = parseOrg(testOrgFile);

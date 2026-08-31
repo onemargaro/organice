@@ -239,20 +239,32 @@ export default class AgendaDay extends PureComponent {
           }
         });
       })
-      .sortBy(([planningItem, header]) => {
-        const { startHour, startMinute, endHour, endMinute, month, day } = planningItem
-          .get('timestamp')
-          .toJS();
-        return [
-          isHabit(header) ? 0 : 1,
-          startHour ? 0 : 1,
-          startHour,
-          startMinute,
-          endHour,
-          endMinute,
-          month,
-          day,
-        ];
-      });
+      .sortBy(
+        ([planningItem, header]) => {
+          const { startHour, startMinute, endHour, endMinute, month, day } = planningItem
+            .get('timestamp')
+            .toJS();
+          return [
+            isHabit(header) ? 0 : 1,
+            startHour === undefined ? 1 : 0,
+            startHour || 0,
+            startMinute || 0,
+            endHour || 0,
+            endMinute || 0,
+            month || 0,
+            day || 0,
+          ];
+        },
+        // Immutable.js's default comparator falls back to string comparison
+        // for non-primitive values, which stringifies these arrays and
+        // sorts e.g. hour 10 before hour 9 lexicographically. Compare the
+        // key arrays numerically, element by element, instead.
+        (a, b) => {
+          for (let i = 0; i < a.length; i++) {
+            if (a[i] !== b[i]) return a[i] - b[i];
+          }
+          return 0;
+        }
+      );
   }
 }
